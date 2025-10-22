@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #f8f1f3;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      display: flex;
+      width: 800px;
+      height: 500px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .login-left {
+      flex: 1 1 0;
+      padding: 48px 40px 32px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .login-left h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #22223b;
+    }
+    .login-left p {
+      color: #4a4e69;
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .login-form input[type="email"] {
+      padding: 16px 14px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .login-form input[type="email"]:focus {
+      border: 1.5px solid #4ea8de;
+    }
+    .login-form .forgot {
+      color: #4ea8de;
+      font-size: 0.98rem;
+      text-decoration: none;
+      margin-bottom: 8px;
+      margin-top: -8px;
+      align-self: flex-start;
+      transition: color 0.2s;
+    }
+    .login-form .forgot:hover {
+      color: #22223b;
+    }
+    .login-form button {
+      background: #1976a5;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(25,118,165,0.08);
+      margin-top: 8px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .login-form button:hover {
+      background: #12507a;
+    }
+    .login-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 32px 0 18px 0;
+    }
+    .login-social {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .login-social button {
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1.5px solid #e0e0e0;
+      background: #fff;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border 0.2s, background 0.2s;
+    }
+    .login-social button:hover {
+      border: 1.5px solid #1976a5;
+      background: #f0f8ff;
+    }
+    .login-social img {
+      width: 22px;
+      height: 22px;
+    }
+    .login-signup {
+      text-align: center;
+      font-size: 0.98rem;
+      color: #4a4e69;
+      margin-top: 8px;
+    }
+    .login-signup a {
+      color: #1976a5;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+    .login-signup a:hover {
+      color: #22223b;
+    }
+    .login-right {
+      flex: 1 1 0;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80') center center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+    .login-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.5rem;
+      color: #22223b;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .login-close:hover {
+      background: #f0f0f0;
+    }
+    @media (max-width: 900px) {
+      .login-container {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+        min-height: 600px;
+      }
+      .login-right {
+        min-height: 220px;
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-left">
+      <h2>Log In</h2>
+      <p>Log in to your account to upload or download pictures, videos or music.</p>
+      <form class="login-form">
+        <input type="email" placeholder="Enter your email address" required />
+        <a href="#" class="forgot">Forgot password?</a>
+        <button type="submit">Next <span style="font-size:1.3em;">&#8594;</span></button>
+      </form>
+      <hr class="login-divider" />
+      <div style="text-align:center; color:#b0b0b0; font-size:0.98rem; margin-bottom:18px;">Or log in with</div>
+      <div class="login-social">
+        <button type="button"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook" /> Facebook</button>
+        
+  <button type="button"><img src="/img/google.png" alt="Google" /> Google</button>
+  </div>
+      <div class="login-signup">
+        Don't have an account yet? <a href="#">Sign up</a>
+      </div>
+    </div>
+    <div class="login-right">
+      <button class="login-close">&times;</button>
+    </div>
+  </div>
+</body>
+</html>

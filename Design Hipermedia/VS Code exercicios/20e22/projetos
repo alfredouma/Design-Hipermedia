@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrega com Tecnologia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero {
+      background-color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero h2 {
+      font-size: 1.5rem;
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #343a40;
+    }
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #0d6efd;
+    }
+    .tool-card {
+      background-color: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+    }
+    .tool-card h5 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .tool-card p {
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Reliable, efficient delivery</h1>
+      <h2>Powered by Technology</h2>
+      <p>Nossas ferramentas com inteligência artificial usam milhões de dados de projetos para garantir que o seu projeto seja bem-sucedido.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="tool-card">
+          <div class="card-icon">🔍</div>
+          <h5>Supervisor</h5>
+          <p>Monitora atividades para identificar obstáculos no projeto.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tool-card">
+          <div class="card-icon">📊</div>
+          <h5>Team Builder</h5>
+          <p>Analisa nossa rede de talentos para montar a equipe ideal.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tool-card">
+          <div class="card-icon">🖥️</div>
+          <h5>Calculator</h5>
+          <p>Usa dados de projetos anteriores para estimativas mais precisas.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="tool-card">
+          <div class="card-icon">💡</div>
+          <h5>Karma</h5>
+          <p>Avalia regularmente os talentos para garantir qualidade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

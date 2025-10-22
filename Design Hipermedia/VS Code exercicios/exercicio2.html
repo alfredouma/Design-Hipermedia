@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Quadrado com Cores</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: white;
+    }
+
+    .container {
+      width: 300px;
+      height: 300px;
+      background-color: #ccc; /* fundo cinzento */
+      display: flex;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .ex31 {
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .ex32 {
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .ex33 {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .color-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+    }
+
+    .verde {
+      background-color: green;
+    }
+
+    .amarelo {
+      background-color: yellow;
+    }
+
+    .vermelho {
+      background-color: red;
+    }
+    .ex34 {
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .ex35 {
+      justify-content: flex-start;
+      align-items: flex-end;
+      gap: 0;
+    }
+    .ex36 {
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+    .ex37 {
+      justify-content: flex-start;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    .ex38 {
+      justify-content: flex-end;
+      align-items: flex-start;
+      flex-direction: row-reverse;
+      gap: 0;
+    }
+    .ex39 {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .ex310 {
+      justify-content: flex-end;
+      align-items: flex-start;
+      flex-direction: row-reverse;
+      gap: 0;
+    }
+    .ex311 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .ex312 {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .ex313 {
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .ex314 {
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>3.1</h3>
+  <div class="container ex31">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo" style="visibility:hidden;"></div>
+    <div class="color-box vermelho" style="visibility:hidden;"></div>
+  </div>
+
+  <h3>3.2</h3>
+  <div class="container ex32">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho" style="visibility:hidden;"></div>
+  </div>
+
+  <h3>3.3</h3>
+  <div class="container ex33">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+  <h3>3.4</h3>
+  <div class="container ex34">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.5</h3>
+  <div class="container ex35">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.6</h3>
+  <div class="container ex36">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.7</h3>
+  <div class="container ex37">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.8</h3>
+  <div class="container ex38">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.9</h3>
+  <div class="container ex39">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.10</h3>
+  <div class="container ex310">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.11</h3>
+  <div class="container ex311">
+    <div class="color-box verde"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box vermelho"></div>
+  </div>
+
+  <h3>3.12</h3>
+  <div class="container ex312">
+    <div class="color-box vermelho"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box verde"></div>
+  </div>
+
+  <h3>3.13</h3>
+  <div class="container ex313">
+    <div class="color-box vermelho"></div>
+    <div class="color-box amarelo"></div>
+    <div class="color-box verde"></div>
+  </div>
+
+  <h3>3.14</h3>
+  <div class="container ex314">
+    <div class="color-box verde"></div>
+    <div class="color-box vermelho"></div>
+    <div class="color-box amarelo"></div>
+  </div>
+</body>
+
+</html>

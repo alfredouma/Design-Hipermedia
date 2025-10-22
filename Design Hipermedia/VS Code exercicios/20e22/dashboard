@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Media Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f0f3fa;
+      --bg-dark: #1e202a;
+      --card-light: #ffffff;
+      --card-dark: #252b43;
+      --text-light: #1e202a;
+      --text-dark: #ffffff;
+      --accent: #00c896;
+      --negative: #dc3545;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: var(--card-light);
+      border-radius: 10px;
+      padding: 20px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    body.dark-mode .card {
+      background-color: var(--card-dark);
+    }
+
+    .card h5 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card .change {
+      font-size: 0.9rem;
+    }
+
+    .positive {
+      color: var(--accent);
+    }
+
+    .negative {
+      color: var(--negative);
+    }
+
+    .overview-title {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .toggle-switch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-switch input {
+      width: 40px;
+      height: 20px;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .metric-value {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .metric-change {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container py-4">
+    <div class="dashboard-header">
+      <h2>Social Media Dashboard</h2>
+      <div class="toggle-switch">
+        <label for="darkToggle">Dark Mode</label>
+        <input type="checkbox" id="darkToggle">
+      </div>
+    </div>
+
+    <!-- Top Section -->
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="icon text-primary"><i class="fab fa-twitter"></i></div>
+          <h5>@nathanf</h5>
+          <div class="metric-value">1987 Followers</div>
+          <div class="change positive">+12 Today</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="icon text-primary"><i class="fab fa-facebook-square"></i></div>
+          <h5>@nathanf</h5>
+          <div class="metric-value">1044 Followers</div>
+          <div class="change positive">+99 Today</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="icon text-danger"><i class="fab fa-instagram"></i></div>
+          <h5>@realnathanf</h5>
+          <div class="metric-value">11k Followers</div>
+          <div class="change positive">+1099 Today</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="icon text-danger"><i class="fab fa-youtube"></i></div>
+          <h5>Nathan F.</h5>
+          <div class="metric-value">8239 Subscribers</div>
+          <div class="change negative">-144 Today</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="overview-title">Overview - Today</div>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Page Views</h5>
+          <div class="metric-value">87</div>
+          <div class="metric-change positive">+3%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Likes (Facebook)</h5>
+          <div class="metric-value">52</div>
+          <div class="metric-change negative">-2%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Likes (Instagram)</h5>
+          <div class="metric-value">5462</div>
+          <div class="metric-change positive">+2257%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Profile Views</h5>
+          <div class="metric-value">52k</div>
+          <div class="metric-change positive">+1375%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Retweets</h5>
+          <div class="metric-value">117</div>
+          <div class="metric-change positive">+303%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Likes (Twitter)</h5>
+          <div class="metric-value">507</div>
+          <div class="metric-change positive">+107%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Likes (YouTube)</h5>
+          <div class="metric-value">107</div>
+          <div class="metric-change negative">-19%</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center">
+          <h5>Total Views</h5>
+          <div class="metric-value">1407</div>
+          <div class="metric-change negative">-12%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('darkToggle');
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+
+</body>
+</html>
