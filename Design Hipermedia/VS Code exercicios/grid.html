@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grid - Design Hipermedia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin:0; padding:0; box-sizing:border-box; }
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: linear-gradient(180deg, #2a2d5f 0%, #1f2251 100%);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 1.5rem;
+      }
+      
+      /* Left column */
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .card-image {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+      }
+      .card-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .card-image .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem 1.5rem;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: white;
+      }
+      .card-image h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .card-image .line {
+        height: 2px;
+        background: rgba(255,255,255,0.3);
+        width: 100%;
+      }
+      
+      /* Right column */
+      .right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .card-main {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      }
+      .card-main img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+      .card-content {
+        padding: 1.5rem;
+        display: flex;
+        gap: 1.5rem;
+      }
+      .date {
+        background: #f5f7ff;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        min-width: 70px;
+      }
+      .date .day {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2563eb;
+        line-height: 1;
+      }
+      .date .month {
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+      .card-text h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+      .card-text p {
+        color: #64748b;
+      }
+      
+      /* Login card */
+      .card-login {
+        margin-top: 1rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        height: 120px;
+        background-image: url('https://media.istockphoto.com/id/1174282589/photo/halloween-jack-o-lantern-bucket-filled-with-candy-isolated-on-white.jpg?s=612x612&w=0&k=20&c=tuvcuOM1xD8Pfj9yLl9mjYqyssOxr_bqjuTZwykE-CE=');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .card-login .label {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="card-image">
+          <img src="https://images.pexels.com/photos/619423/pexels-photo-619423.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Halloween decorations">
+          <div class="overlay">
+            <h2>Design Hipermédia: CSS Halloween</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="card-image">
+          
+          <img src="https://media.istockphoto.com/id/175195916/photo/halloween-casino-witch-with-smoking-pipe-and-pumpkins.jpg?s=612x612&w=is&k=20&c=vlH2OV6tCuh_h2IwvP0GHks41uKbhBlzucZNhUkiuCA=" alt="Halloween witch">
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card-main">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Pumpkins_with_candles_%28Unsplash%29.jpg/1599px-Pumpkins_with_candles_%28Unsplash%29.jpg?20170818192652" alt="Halloween pumpkins">
+          <div class="card-content">
+            <div class="date">
+              <div class="day">31</div>
+              <div class="month">Out</div>
+            </div>
+            <div class="card-text">
+              <h3>OS MELHORES WEBSITES DE HALLOWEEN</h3>
+              <p>Por Marco Olim</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-login">
+          <div class="label">LOGIN</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

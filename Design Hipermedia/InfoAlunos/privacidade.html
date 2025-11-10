@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoAlunos - Privacidade e Consentimentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0087cd;
+            color: white;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-header {
+            width: 100px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .user-profile {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid white;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 130px;
+            background-color: #f0f0f0;
+            border-right: 1px solid #ddd;
+            padding: 0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: #e8e8e8;
+        }
+
+        .sidebar-menu .arrow {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        /* Content Area */
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Consent Item */
+        .consent-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .consent-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .consent-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-person {
+            color: #0087cd;
+        }
+
+        .icon-car {
+            color: #0087cd;
+        }
+
+        .icon-email {
+            color: #0087cd;
+        }
+
+        .consent-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0087cd;
+            flex: 1;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .status-icon {
+            font-size: 1.2rem;
+        }
+
+        .status-accepted {
+            color: #28a745;
+        }
+
+        .status-pending {
+            color: #666;
+        }
+
+        .consent-body {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .consent-checklist {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 1rem;
+        }
+
+        .consent-checklist li {
+            color: #0087cd;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .consent-checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .consent-checklist li span {
+            color: #666;
+        }
+
+        .attention-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #f0ad4e;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            color: #8a6d3b;
+            line-height: 1.6;
+        }
+
+        .attention-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .shared-data {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .shared-data-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .shared-data-item {
+            color: #0087cd;
+            margin-left: 1rem;
+        }
+
+        .shared-data-item::before {
+            content: "✓ ";
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-autorizar {
+            background-color: #0087cd;
+            color: white;
+        }
+
+        .btn-autorizar:hover {
+            background-color: #0076b4;
+        }
+
+        .btn-recusar {
+            background-color: #0087cd;
+            color: white;
+        }
+
+        .btn-recusar:hover {
+            background-color: #0076b4;
+        }
+
+        .date-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f0f0f0;
+            border-top: 1px solid #ddd;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+            flex-shrink: 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-left a {
+            color: #0087cd;
+            text-decoration: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <img src="assets/img/logouni.png" alt="Logo" class="logo-header">
+            <div class="header-title">InfoAlunos - Serviço de Informação dos Alunos - v3.1.4</div>
+        </div>
+        <div class="header-right">
+            <select class="language-selector">
+                <option value="pt">PT | EN</option>
+            </select>
+            <img src="assets/img/user.png" alt="User" class="user-profile">
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="home.html">Início <span class="arrow">›</span></a></li>
+                <li><a href="#">Geral <span class="arrow">›</span></a></li>
+                <li><a href="#">Serviços <span class="arrow">›</span></a></li>
+                <li><a href="#">Concursos <span class="arrow">›</span></a></li>
+                <li><a href="#">Avaliação <span class="arrow">›</span></a></li>
+                <li><a href="#">Creditações <span class="arrow">›</span></a></li>
+                <li><a href="#">Documentos <span class="arrow">›</span></a></li>
+                <li><a href="#">Aula <span class="arrow">›</span></a></li>
+                <li><a href="#">Disciplina <span class="arrow">›</span></a></li>
+                <li><a href="#">Curso <span class="arrow">›</span></a></li>
+                <li><a href="#">Instituição <span class="arrow">›</span></a></li>
+                <li><a href="#">Eleições <span class="arrow">›</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="scrollable-content">
+            <div class="content">
+                <h1 class="page-title">Privacidade e Consentimentos</h1>
+                <p class="page-subtitle">Deverá clicar sobre cada um dos diferentes itens abaixo de modo a permitir ou recusar a utilização dos seus dados pessoais.</p>
+
+                <!-- ITEM 1: Autorização de Dados Pessoais -->
+                <div class="consent-item">
+                    <div class="consent-header">
+                        <div class="consent-icon icon-person">👤</div>
+                        <div class="consent-title">AUTORIZAÇÃO DE DADOS PESSOAIS</div>
+                        <div class="status-badge status-accepted">
+                            <span class="status-icon">✓</span>
+                            <span>TOMEI CONHECIMENTO</span>
+                        </div>
+                    </div>
+
+                    <div class="consent-body">
+                        Os dados pessoais aqui submetidos são para uso exclusivo da Universidade da Madeira e nos cursos em parceria, das correspondentes entidades, e não serão nunca divulgados a terceiros nem utilizados para outros fins sem o seu consentimento, no estrito cumprimento da legislação existente sobre proteção de dados pessoais. A recolha e tratamento destes dados insere-se na necessidade da prosecução da missão das Instituições envolvidas, nos termos do Regime Jurídico das Instituições de Ensino Superior (Lei nº 62/2007, de 10 de setembro) e dos seus Estatutos.
+                    </div>
+
+                    <div class="consent-body">
+                        Assim, sem prejuízo do atrás referido, os seus dados pessoais poderão ser utilizados pelas seguintes entidades, para os devidos efeitos:
+                    </div>
+
+                    <ul class="consent-checklist">
+                        <li><span>Pólo de emprego para divulgação das ofertas de emprego.</span></li>
+                        <li><span>Entidades coexportantes diversas, para realização de trabalhos académicos/estágios/projetos e/ou atividades laborais.</span></li>
+                        <li><span>Gabinete de Comunicação e Marketing (GCM) da UMa, para divulgação no sítio da UMa e nas redes sociais das fotos em que possa estar presente, desde que decorrente da participação em algum evento organizado pela/na Instituição.</span></li>
+                    </ul>
+
+                    <div class="date-info">
+                        <strong>Tomei Conhecimento</strong> em 2025-09-18 15:45
+                    </div>
+                </div>
+
+                <!-- ITEM 2: Passe Social -->
+                <div class="consent-item">
+                    <div class="consent-header">
+                        <div class="consent-icon icon-car">🚗</div>
+                        <div class="consent-title">PASSE SOCIAL 4_23 E PASSE SOCIAL ESTUDANTES +23 ANOS</div>
+                        <div class="status-badge status-pending">
+                            <span class="status-icon">⊘</span>
+                            <span>AGUARDA AUTORIZAÇÃO</span>
+                        </div>
+                    </div>
+
+                    <div class="consent-body">
+                        No âmbito da Portaria nº 237/2024 nos seus artigos 13º (Passe Social 4_23) e 14º (Passe Social Estudante +23 anos), os alunos da Universidade da Madeira (UMa) têm acesso ao passe mensal gratuito, se tiverem até 23 anos (inclusive), ou a um desconto no mesmo, se tiverem mais de 23 anos e menos de 26 anos. Para tal a Universidade envia alguns dados dos seus alunos para a Direção Regional de Informática (DRI) do Governo Regional (por via de abaixo). Por forma a garantir o cumprimento do Regulamento Geral de Proteção de Dados serão apenas incluídos os alunos cujo consentimento seja explícito nesta página, podendo estes alterar o seu consentimento em qualquer altura. Assim, pedimos que verifique esta informação com atenção (nos seus dados pessoais) e, caso autorize o envio dos dados, por favor, assinale a opção de aceitação de envio para os serviços da DRI.
+                    </div>
+
+                    <div class="shared-data">
+                        <div class="shared-data-title">Dados Partilhados:</div>
+                        <div class="shared-data-item">Número de Identificação Fiscal</div>
+                        <div class="shared-data-item">Data de Nascimento</div>
+                    </div>
+
+                    <div class="attention-box">
+                        <div class="attention-label">Atenção:</div>
+                        A atualização dos consentimentos aqui efetuados é refletida nas transportadoras no dia seguinte, sendo processada durante a madrugada. Consentimentos dados após as 00:00 podem levar até dois dias para serem disponibilizados. Alunos sem NIF Português não podem solicitar o passe, devem solicitar NIF português e atualizar os dados pessoais.
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-autorizar">Autorizo</button>
+                        <button class="btn btn-recusar">Não Autorizo</button>
+                    </div>
+                </div>
+
+                <!-- ITEM 3: Email Institucional -->
+                <div class="consent-item">
+                    <div class="consent-header">
+                        <div class="consent-icon icon-email">✉</div>
+                        <div class="consent-title">CORREIO ELETRÓNICO INSTITUCIONAL - INFORMAÇÃO NÃO ACADÉMICA</div>
+                        <div class="status-badge status-pending">
+                            <span class="status-icon">⊘</span>
+                            <span>AGUARDA AUTORIZAÇÃO</span>
+                        </div>
+                    </div>
+
+                    <div class="consent-body">
+                        Autorizo que a Universidade da Madeira utilize o endereço do meu email institucional (2133925@student.uma.pt), para envio de informações não académicas e/ou não relacionadas com o(s) cursos em que me encontro inscrito.
+                    </div>
+
+                    <div class="consent-body">
+                        <strong>Atenção:</strong> Este consentimento produzirá efeitos a partir de 08-10-2021.
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-autorizar">Autorizo</button>
+                        <button class="btn btn-recusar">Não Autorizo</button>
+                    </div>
+                </div>
+
+                <!-- ITEM 4: Inclusão Lista Alumni -->
+                <div class="consent-item">
+                    <div class="consent-header">
+                        <div class="consent-icon icon-email">✉</div>
+                        <div class="consent-title">INCLUSÃO NA LISTA ALUMNI</div>
+                        <div class="status-badge status-pending">
+                            <span class="status-icon">⊘</span>
+                            <span>AGUARDA AUTORIZAÇÃO</span>
+                        </div>
+                    </div>
+
+                    <div class="consent-body">
+                        Autorizo que a Universidade da Madeira utilize o endereço do meu email pessoal (ag8756874@gmail.com), na lista Alumni, para divulgação de eventos ou outras informações de interesse para alunos diplomados pela Universidade da Madeira.
+                    </div>
+
+                    <div class="consent-body">
+                        <strong>Atenção:</strong> Este consentimento só produzirá efeitos, a partir do momento em que seja diplomado.
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-autorizar">Autorizo</button>
+                        <button class="btn btn-recusar">Não Autorizo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        © Universidade da Madeira - Gabinete de Desenvolvimento de Aplicações Informáticas - <a href="#">Proteção de Dados e Termos de Utilização</a><br>
+                        Colégio dos Jesuítas, 9000-081 Funchal | Tel: +351 291 209400 | Fax: +351 291 205410<br>
+                        Processado em 4.36 segundos - powered by Hydra Framework
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

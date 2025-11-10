@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoAlunos - Dados Pessoais</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0087cd;
+            color: white;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-header {
+            width: 100px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .user-profile {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid white;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 130px;
+            background-color: #f0f0f0;
+            border-right: 1px solid #ddd;
+            padding: 0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: #e8e8e8;
+        }
+
+        .sidebar-menu .arrow {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        /* Content Area */
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Card Section */
+        .card-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .edit-link {
+            color: #0087cd;
+            text-decoration: underline;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .full-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0087cd;
+            margin-bottom: 0.25rem;
+        }
+
+        .abbreviated-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Info Row */
+        .info-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .info-value a {
+            color: #0087cd;
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #666;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Address Box */
+        .address-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .address-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .address-line {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f0f0f0;
+            border-top: 1px solid #ddd;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+            flex-shrink: 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-left a {
+            color: #0087cd;
+            text-decoration: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        /* Multi-column info */
+        .info-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5rem;
+        }
+
+        .info-item-label {
+            font-weight: bold;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .info-item-value {
+            color: #333;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <img src="assets/img/logouni.png" alt="Logo" class="logo-header">
+            <div class="header-title">InfoAlunos - Serviço de Informação dos Alunos - v3.1.4</div>
+        </div>
+        <div class="header-right">
+            <select class="language-selector">
+                <option value="pt">PT | EN</option>
+            </select>
+            <img src="assets/img/user.png" alt="User" class="user-profile">
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="home.html">Início <span class="arrow">›</span></a></li>
+                <li><a href="#">Geral <span class="arrow">›</span></a></li>
+                <li><a href="#">Serviços <span class="arrow">›</span></a></li>
+                <li><a href="#">Concursos <span class="arrow">›</span></a></li>
+                <li><a href="#">Avaliação <span class="arrow">›</span></a></li>
+                <li><a href="#">Creditações <span class="arrow">›</span></a></li>
+                <li><a href="#">Documentos <span class="arrow">›</span></a></li>
+                <li><a href="#">Aula <span class="arrow">›</span></a></li>
+                <li><a href="#">Disciplina <span class="arrow">›</span></a></li>
+                <li><a href="#">Curso <span class="arrow">›</span></a></li>
+                <li><a href="#">Instituição <span class="arrow">›</span></a></li>
+                <li><a href="#">Eleições <span class="arrow">›</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="scrollable-content">
+            <div class="content">
+                <!-- Main Grid -->
+                <div class="main-grid">
+                    <!-- LEFT COLUMN: Personal Data -->
+                    <div class="card-section">
+                        <div class="card-header">
+                            <div class="card-title">Nome e Informação Biográfica</div>
+                            <a href="#" class="edit-link">Alterar</a>
+                        </div>
+
+                        <!-- Profile Section with Photo -->
+                        <div class="profile-section">
+                            <img src="assets/img/user.png" alt="Foto" class="profile-photo">
+                            <div class="profile-info">
+                                <div class="full-name">Alfredo Alejandro Garcia de Gouveia</div>
+                                <div class="abbreviated-name">Alfredo Alejandro</div>
+                            </div>
+                        </div>
+
+                        <!-- Info Rows -->
+                        <div class="info-row">
+                            <div class="info-label">Nome Abreviado</div>
+                            <div class="info-value">Alfredo Alejandro</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Nomes Próprios</div>
+                            <div class="info-value">Alfredo Alejandro</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Apelidos</div>
+                            <div class="info-value">Garcia de Gouveia</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Data de Nascimento</div>
+                            <div class="info-value">2007-10-01</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Sexo</div>
+                            <div class="info-value">Masculino</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Estado Civil</div>
+                            <div class="info-value">Solteiro</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Naturalidade</div>
+                            <div class="info-value">Venezuela</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Nacionalidade</div>
+                            <div class="info-value">Portugal</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Pai - Nome Completo</div>
+                            <div class="info-value">Alfredo Antonio Garcia Rodriguez</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Mãe - Nome Completo</div>
+                            <div class="info-value">Maria Irene De Gouveia Mota</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">ALUNO Nº</div>
+                            <div class="info-value">2133925</div>
+                        </div>
+
+                        <!-- Morada Section -->
+                        <div class="section-subtitle">Morada</div>
+                        <div class="section-subtitle" style="font-size: 0.85rem; margin-top: 0.75rem;">Morada de Correspondência</div>
+
+                        <div class="card-header" style="margin-top: 0.5rem;">
+                            <div class="card-title">Alfredo Alejandro Garcia de Gouveia</div>
+                            <a href="#" class="edit-link">Alterar</a>
+                        </div>
+
+                        <div class="address-box">
+                            <div class="address-line">Estrada da Boa Nova casa17A</div>
+                            <div class="address-line">9060-001 Boa Nova</div>
+                            <div class="address-line">Portugal</div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Documents & Contacts -->
+                    <div>
+                        <!-- Identification Documents -->
+                        <div class="card-section" style="margin-bottom: 1rem;">
+                            <div class="card-header">
+                                <div class="card-title">Documentos de Identificação</div>
+                                <a href="#" class="edit-link">Adicionar</a>
+                            </div>
+
+                            <div class="section-subtitle">Número de Identificação Fiscal</div>
+                            <div class="info-columns">
+                                <div class="info-item">
+                                    <div class="info-item-label">Numero</div>
+                                    <div class="info-item-value">301562113</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-item-label">País de Emissão</div>
+                                    <div class="info-item-value">Portugal</div>
+                                </div>
+                            </div>
+
+                            <div class="section-subtitle">Número de Identificação Civil</div>
+                            <div class="card-header" style="margin: 0; padding: 0; border: none; margin-bottom: 0.5rem;">
+                                <div></div>
+                                <a href="#" class="edit-link">Alterar</a>
+                            </div>
+                            <div class="info-columns">
+                                <div class="info-item">
+                                    <div class="info-item-label">Numero</div>
+                                    <div class="info-item-value">33226617 6ZZ8</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-item-label">País de Emissão</div>
+                                    <div class="info-item-value">Portugal</div>
+                                </div>
+                            </div>
+                            <div class="info-columns" style="margin-top: 0.5rem;">
+                                <div class="info-item">
+                                    <div class="info-item-label"></div>
+                                    <div class="info-item-value"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-item-label">Validade</div>
+                                    <div class="info-item-value">2028-06-14</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contacts -->
+                        <div class="card-section">
+                            <div class="card-header">
+                                <div class="card-title">Contactos</div>
+                                <a href="#" class="edit-link">Alterar</a>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-label">Número de telefone</div>
+                                <div class="info-value"></div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Número de telemóvel</div>
+                                <div class="info-value">968080786</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">EMail Pessoal</div>
+                                <div class="info-value"><a href="mailto:ag8756874@gmail.com">ag8756874@gmail.com</a></div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Email Institucional</div>
+                                <div class="info-value"><a href="mailto:2133925@student.uma.pt">2133925@student.uma.pt</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        © Universidade da Madeira - Gabinete de Desenvolvimento de Aplicações Informáticas - <a href="#">Proteção de Dados e Termos de Utilização</a><br>
+                        Colégio dos Jesuítas, 9000-081 Funchal | Tel: +351 291 209400 | Fax: +351 291 205410<br>
+                        Processado em 0.07 segundos - powered by Hydra Framework
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
